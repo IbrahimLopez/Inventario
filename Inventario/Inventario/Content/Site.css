@@ -1,0 +1,94 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    color:black;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+    
+
+}
+
+
+.imagen{
+    background-image:url("images/inventario.jpg");
+    background-size:100%;    
+    width:500px; height:1200px;
+    background-position-y:50px;
+    background-position-x:center;
+    /*background-position-y:center;*/
+    background-repeat:no-repeat;
+    border:dashed;
+    border-style:dashed;
+    border:10px;
+
+    
+    
+   
+}
+.barraNav{
+    font-family:Arial;
+    font-size:16px;
+    color: black;
+}
+.letras{
+    color:black;
+    
+}
+
+/*h1,h6,legend,h2{
+    color: #b0750b;
+}
+
+.x{
+   border-radius: 50px;
+    background:rgba(66, 65, 65, 0.84);
+    padding: 20px; 
+    color:white;
+}
+table{
+     padding: 8px;
+    text-align: center;
+   border-bottom: 2px solid #ddd;
+   border-collapse: collapse;
+    width: 100%;
+    background-color:rgba(157, 113, 9, 0.71);
+    font-size:medium;
+    color:#000000;
+    border:2px solid #000000;
+}
+boton{
+    
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.c{
+    color:black;
+}
+h4{*/
+
+

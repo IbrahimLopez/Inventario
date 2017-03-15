@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Inventario.Models.Tabla_Proveedores>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte</title>
+    <script src="~/Scripts/jspdf.debug.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="container panel-body" id="Reporte">
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    Nombre Proveedor
+                </th>
+                <th>
+                    Apellido Paterno
+                </th>
+                <th>
+                    Apellido Materno
+                </th>
+                <th>
+                    Telefono Proveedor
+                </th>
+                <th>
+                    Direccion Proveedor
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombreProveedor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellidoPaternoProveedor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellidoMaternoProveedor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefonoProveedor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccionProveedor)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="container">
+        <input type="button" class="btn" onclick="DescargarPDF('Reporte','ReporteProveedores')" name="Descargar PDF" value="Descargar PDF" />
+    </div>
+</body>
+</html>
+<script>
+        function DescargarPDF(ContenidoID, nombre) {
+            var pdf = new jsPDF('p', 'pt', 'b2');
+            html = $('#' + ContenidoID).html();
+            specialElementHandlers = {};
+            margins = { top: 10, bottom: 20, left: 20, width: 522 };
+            pdf.fromHTML(html, margins.left, margins.top, { 'width': margins.width }, function (dispose) { pdf.save(nombre + '.pdf'); }, margins);
+        }
+</script>

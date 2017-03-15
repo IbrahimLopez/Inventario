@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Inventario.Models.Tabla_Intemedia_Comrpas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container form-group"></div>
+
+
+    
+   <div class="form-group container">
+       <div class="panel panel-info">
+           <div class="panel-heading">
+               <h3 class="panel-title">Compras</h3>
+           </div>
+           <div class="panel-body">
+               <!-- Table -->
+               <table class="table table-responsive table-hover">
+
+                   <tr>
+                       <th>
+                           @Html.DisplayNameFor(model => model.Tabla_Clientes.nombreCliente)
+                       </th>
+                       <th>
+                           @Html.DisplayNameFor(model => model.Tabla_Productos.nombreProducto)
+                       </th>
+                       <th>
+                           @Html.DisplayNameFor(model => model.fechaCompra)
+                       </th>
+                       <th>
+                           @Html.DisplayNameFor(model => model.cantidad)
+                       </th>
+                       <th></th>
+                       <th></th>
+                       <th></th>
+                   </tr>
+
+                   @foreach (var item in Model)
+                   {
+                       <tr>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.Tabla_Clientes.nombreCliente)
+                           </td>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.Tabla_Productos.nombreProducto)
+                           </td>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.fechaCompra)
+                           </td>
+                           <td>
+                               @Html.DisplayFor(modelItem => item.cantidad)
+                           </td>
+                           <td>
+                               @if (User.IsInRole("Admin"))
+                                   {
+                                       @Html.ActionLink("Edit", "Edit", new { id = item.compraID })                                                                      
+                               }
+                           </td>
+                           <td>
+                               @if (User.IsInRole("Admin"))
+                               {
+                                @Html.ActionLink("Detalles", "Details", new { id = item.compraID })
+                               }
+                           </td>
+
+                           <td>
+                               @if (User.IsInRole("Admin"))
+                               {                                                                    
+                                   @Html.ActionLink("Eliminar", "Delete", new { id = item.compraID })
+                               }
+                           </td>
+
+                       </tr>
+                   }
+
+               </table>
+           </div>
+       </div>
+   </div>
+
+<div class="col-md-6 form-group container">
+    @Html.ActionLink("Crear nueva compra", "Create", null, htmlAttributes: new { @class = "btn btn-info" })
+    @Html.ActionLink("Reporte compras", "Reporte", null, htmlAttributes: new { @class = "btn btn-info" })
+</div>
+
+

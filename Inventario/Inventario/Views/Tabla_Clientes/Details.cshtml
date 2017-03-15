@@ -1,0 +1,95 @@
+﻿@model Inventario.Models.Tabla_Clientes
+@using Inventario.Models
+
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidoPaternoCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoPaternoCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidoMaternoCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoMaternoCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccionCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccionCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonoCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correroCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correroCliente)
+        </dd>
+   
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.clienteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<legend>Historial de compras</legend>
+
+<table style="background-color:rgba(74, 90, 86, 0.68)" class="table table-hover">
+    <tr>
+        <th>Nombre del Cliente</th>
+        <th>Nombre del Producto</th>
+        <th>Fecha de compra</th>
+        <th>Cantidad</th>
+    </tr>
+    
+    @foreach (var compra in Model.Tabla_Intemedia_Comrpas)
+            {
+        <tr>
+            <td>@(compra.Tabla_Clientes.nombreCliente+" "+compra.Tabla_Clientes.apellidoPaternoCliente+" "+compra.Tabla_Clientes.apellidoMaternoCliente)</td>
+            <td>@compra.Tabla_Productos.nombreProducto</td>
+            <td>@compra.fechaCompra</td>
+            <td>@compra.cantidad</td>            
+            <td>@Html.ActionLink("Delete", "Delete", "Tabla_Intemedia_Compras", new { id = compra.compraID }, null)  </td>
+            <td>@Html.ActionLink("Details", "Details", "Tabla_Intemedia_Compras", new { id = compra.compraID }, null)  </td>
+        </tr>
+    }
+
+
+</table>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8949a9ee8fb74ba5bbb56cb6a78351d3" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="DB_Sistema_de_InventarioModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Sistema_de_InventarioModel.Tabla_Clientes" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Sistema_de_InventarioModel.Tabla_Intemedia_Comrpas" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Sistema_de_InventarioModel.Tabla_Intermedia_Proveen" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Sistema_de_InventarioModel.Tabla_Productos" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Sistema_de_InventarioModel.Tabla_Proveedores" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Sistema_de_InventarioModel.Tabla_Usuarios" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="DB_Sistema_de_InventarioModel.FK_Tabla_Intemedia_Comrpas_Tabla_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Sistema_de_InventarioModel.FK_Tabla_Intemedia_Comrpas_Tabla_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Sistema_de_InventarioModel.FK_Tabla_Intermedia_Proveen_Tabla_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Sistema_de_InventarioModel.FK_Tabla_Intermedia_Proveen_Tabla_Proveedores" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

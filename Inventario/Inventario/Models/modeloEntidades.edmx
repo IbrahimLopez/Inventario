@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_Sistema_de_InventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tabla_Clientes">
+          <Key>
+            <PropertyRef Name="clienteID" />
+          </Key>
+          <Property Name="clienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCliente" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoPaternoCliente" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoMaternoCliente" Type="varchar" MaxLength="50" />
+          <Property Name="direccionCliente" Type="varchar(max)" />
+          <Property Name="telefonoCliente" Type="varchar" MaxLength="50" />
+          <Property Name="correroCliente" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tabla_Intemedia_Comrpas">
+          <Key>
+            <PropertyRef Name="compraID" />
+            <PropertyRef Name="clienteID" />
+            <PropertyRef Name="productoID" />
+          </Key>
+          <Property Name="compraID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clienteID" Type="int" Nullable="false" />
+          <Property Name="productoID" Type="int" Nullable="false" />
+          <Property Name="fechaCompra" Type="datetime" />
+          <Property Name="cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Tabla_Intermedia_Proveen">
+          <Key>
+            <PropertyRef Name="proveenID" />
+          </Key>
+          <Property Name="proveenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productoID" Type="int" />
+          <Property Name="RFCproveedor" Type="int" />
+          <Property Name="fechaProveen" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tabla_Productos">
+          <Key>
+            <PropertyRef Name="productoID" />
+          </Key>
+          <Property Name="productoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreProducto" Type="varchar" MaxLength="50" />
+          <Property Name="precioVenta" Type="money" />
+          <Property Name="precioCompra" Type="money" />
+          <Property Name="pesoNeto" Type="int" />
+          <Property Name="fechaEntrada" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tabla_Proveedores">
+          <Key>
+            <PropertyRef Name="RFCproveedor" />
+          </Key>
+          <Property Name="RFCproveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreProveedor" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoPaternoProveedor" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoMaternoProveedor" Type="varchar" MaxLength="50" />
+          <Property Name="telefonoProveedor" Type="varchar" MaxLength="50" />
+          <Property Name="direccionProveedor" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tabla_Usuarios">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="passwordUsuario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Tabla_Intemedia_Comrpas_Tabla_Clientes">
+          <End Role="Tabla_Clientes" Type="Self.Tabla_Clientes" Multiplicity="1" />
+          <End Role="Tabla_Intemedia_Comrpas" Type="Self.Tabla_Intemedia_Comrpas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Tabla_Intemedia_Comrpas">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabla_Intemedia_Comrpas_Tabla_Productos">
+          <End Role="Tabla_Productos" Type="Self.Tabla_Productos" Multiplicity="1" />
+          <End Role="Tabla_Intemedia_Comrpas" Type="Self.Tabla_Intemedia_Comrpas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Productos">
+              <PropertyRef Name="productoID" />
+            </Principal>
+            <Dependent Role="Tabla_Intemedia_Comrpas">
+              <PropertyRef Name="productoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabla_Intermedia_Proveen_Tabla_Productos">
+          <End Role="Tabla_Productos" Type="Self.Tabla_Productos" Multiplicity="0..1" />
+          <End Role="Tabla_Intermedia_Proveen" Type="Self.Tabla_Intermedia_Proveen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Productos">
+              <PropertyRef Name="productoID" />
+            </Principal>
+            <Dependent Role="Tabla_Intermedia_Proveen">
+              <PropertyRef Name="productoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabla_Intermedia_Proveen_Tabla_Proveedores">
+          <End Role="Tabla_Proveedores" Type="Self.Tabla_Proveedores" Multiplicity="0..1" />
+          <End Role="Tabla_Intermedia_Proveen" Type="Self.Tabla_Intermedia_Proveen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Proveedores">
+              <PropertyRef Name="RFCproveedor" />
+            </Principal>
+            <Dependent Role="Tabla_Intermedia_Proveen">
+              <PropertyRef Name="RFCproveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_Sistema_de_InventarioModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabla_Clientes" EntityType="Self.Tabla_Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabla_Intemedia_Comrpas" EntityType="Self.Tabla_Intemedia_Comrpas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabla_Intermedia_Proveen" EntityType="Self.Tabla_Intermedia_Proveen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabla_Productos" EntityType="Self.Tabla_Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabla_Proveedores" EntityType="Self.Tabla_Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabla_Usuarios" EntityType="Self.Tabla_Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tabla_Intemedia_Comrpas_Tabla_Clientes" Association="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Clientes">
+            <End Role="Tabla_Clientes" EntitySet="Tabla_Clientes" />
+            <End Role="Tabla_Intemedia_Comrpas" EntitySet="Tabla_Intemedia_Comrpas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabla_Intemedia_Comrpas_Tabla_Productos" Association="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Productos">
+            <End Role="Tabla_Productos" EntitySet="Tabla_Productos" />
+            <End Role="Tabla_Intemedia_Comrpas" EntitySet="Tabla_Intemedia_Comrpas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabla_Intermedia_Proveen_Tabla_Productos" Association="Self.FK_Tabla_Intermedia_Proveen_Tabla_Productos">
+            <End Role="Tabla_Productos" EntitySet="Tabla_Productos" />
+            <End Role="Tabla_Intermedia_Proveen" EntitySet="Tabla_Intermedia_Proveen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabla_Intermedia_Proveen_Tabla_Proveedores" Association="Self.FK_Tabla_Intermedia_Proveen_Tabla_Proveedores">
+            <End Role="Tabla_Proveedores" EntitySet="Tabla_Proveedores" />
+            <End Role="Tabla_Intermedia_Proveen" EntitySet="Tabla_Intermedia_Proveen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_Sistema_de_InventarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tabla_Clientes">
+          <Key>
+            <PropertyRef Name="clienteID" />
+          </Key>
+          <Property Name="clienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoPaternoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaternoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccionCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correroCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tabla_Intemedia_Comrpas" Relationship="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Clientes" FromRole="Tabla_Clientes" ToRole="Tabla_Intemedia_Comrpas" />
+        </EntityType>
+        <EntityType Name="Tabla_Intemedia_Comrpas">
+          <Key>
+            <PropertyRef Name="compraID" />
+            <PropertyRef Name="clienteID" />
+            <PropertyRef Name="productoID" />
+          </Key>
+          <Property Name="compraID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clienteID" Type="Int32" Nullable="false" />
+          <Property Name="productoID" Type="Int32" Nullable="false" />
+          <Property Name="fechaCompra" Type="DateTime" Precision="3" />
+          <Property Name="cantidad" Type="Int32" />
+          <NavigationProperty Name="Tabla_Clientes" Relationship="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Clientes" FromRole="Tabla_Intemedia_Comrpas" ToRole="Tabla_Clientes" />
+          <NavigationProperty Name="Tabla_Productos" Relationship="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Productos" FromRole="Tabla_Intemedia_Comrpas" ToRole="Tabla_Productos" />
+        </EntityType>
+        <EntityType Name="Tabla_Intermedia_Proveen">
+          <Key>
+            <PropertyRef Name="proveenID" />
+          </Key>
+          <Property Name="proveenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productoID" Type="Int32" />
+          <Property Name="RFCproveedor" Type="Int32" />
+          <Property Name="fechaProveen" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tabla_Productos" Relationship="Self.FK_Tabla_Intermedia_Proveen_Tabla_Productos" FromRole="Tabla_Intermedia_Proveen" ToRole="Tabla_Productos" />
+          <NavigationProperty Name="Tabla_Proveedores" Relationship="Self.FK_Tabla_Intermedia_Proveen_Tabla_Proveedores" FromRole="Tabla_Intermedia_Proveen" ToRole="Tabla_Proveedores" />
+        </EntityType>
+        <EntityType Name="Tabla_Productos">
+          <Key>
+            <PropertyRef Name="productoID" />
+          </Key>
+          <Property Name="productoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precioVenta" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="precioCompra" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="pesoNeto" Type="Int32" />
+          <Property Name="fechaEntrada" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tabla_Intemedia_Comrpas" Relationship="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Productos" FromRole="Tabla_Productos" ToRole="Tabla_Intemedia_Comrpas" />
+          <NavigationProperty Name="Tabla_Intermedia_Proveen" Relationship="Self.FK_Tabla_Intermedia_Proveen_Tabla_Productos" FromRole="Tabla_Productos" ToRole="Tabla_Intermedia_Proveen" />
+        </EntityType>
+        <EntityType Name="Tabla_Proveedores">
+          <Key>
+            <PropertyRef Name="RFCproveedor" />
+          </Key>
+          <Property Name="RFCproveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoPaternoProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaternoProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccionProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tabla_Intermedia_Proveen" Relationship="Self.FK_Tabla_Intermedia_Proveen_Tabla_Proveedores" FromRole="Tabla_Proveedores" ToRole="Tabla_Intermedia_Proveen" />
+        </EntityType>
+        <EntityType Name="Tabla_Usuarios">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passwordUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Tabla_Intemedia_Comrpas_Tabla_Clientes">
+          <End Role="Tabla_Clientes" Type="Self.Tabla_Clientes" Multiplicity="1" />
+          <End Role="Tabla_Intemedia_Comrpas" Type="Self.Tabla_Intemedia_Comrpas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Tabla_Intemedia_Comrpas">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabla_Intemedia_Comrpas_Tabla_Productos">
+          <End Role="Tabla_Productos" Type="Self.Tabla_Productos" Multiplicity="1" />
+          <End Role="Tabla_Intemedia_Comrpas" Type="Self.Tabla_Intemedia_Comrpas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Productos">
+              <PropertyRef Name="productoID" />
+            </Principal>
+            <Dependent Role="Tabla_Intemedia_Comrpas">
+              <PropertyRef Name="productoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabla_Intermedia_Proveen_Tabla_Productos">
+          <End Role="Tabla_Productos" Type="Self.Tabla_Productos" Multiplicity="0..1" />
+          <End Role="Tabla_Intermedia_Proveen" Type="Self.Tabla_Intermedia_Proveen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Productos">
+              <PropertyRef Name="productoID" />
+            </Principal>
+            <Dependent Role="Tabla_Intermedia_Proveen">
+              <PropertyRef Name="productoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabla_Intermedia_Proveen_Tabla_Proveedores">
+          <End Role="Tabla_Proveedores" Type="Self.Tabla_Proveedores" Multiplicity="0..1" />
+          <End Role="Tabla_Intermedia_Proveen" Type="Self.Tabla_Intermedia_Proveen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabla_Proveedores">
+              <PropertyRef Name="RFCproveedor" />
+            </Principal>
+            <Dependent Role="Tabla_Intermedia_Proveen">
+              <PropertyRef Name="RFCproveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_Sistema_de_InventarioEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tabla_Clientes" EntityType="Self.Tabla_Clientes" />
+          <EntitySet Name="Tabla_Intemedia_Comrpas" EntityType="Self.Tabla_Intemedia_Comrpas" />
+          <EntitySet Name="Tabla_Intermedia_Proveen" EntityType="Self.Tabla_Intermedia_Proveen" />
+          <EntitySet Name="Tabla_Productos" EntityType="Self.Tabla_Productos" />
+          <EntitySet Name="Tabla_Proveedores" EntityType="Self.Tabla_Proveedores" />
+          <EntitySet Name="Tabla_Usuarios" EntityType="Self.Tabla_Usuarios" />
+          <AssociationSet Name="FK_Tabla_Intemedia_Comrpas_Tabla_Clientes" Association="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Clientes">
+            <End Role="Tabla_Clientes" EntitySet="Tabla_Clientes" />
+            <End Role="Tabla_Intemedia_Comrpas" EntitySet="Tabla_Intemedia_Comrpas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabla_Intemedia_Comrpas_Tabla_Productos" Association="Self.FK_Tabla_Intemedia_Comrpas_Tabla_Productos">
+            <End Role="Tabla_Productos" EntitySet="Tabla_Productos" />
+            <End Role="Tabla_Intemedia_Comrpas" EntitySet="Tabla_Intemedia_Comrpas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabla_Intermedia_Proveen_Tabla_Productos" Association="Self.FK_Tabla_Intermedia_Proveen_Tabla_Productos">
+            <End Role="Tabla_Productos" EntitySet="Tabla_Productos" />
+            <End Role="Tabla_Intermedia_Proveen" EntitySet="Tabla_Intermedia_Proveen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabla_Intermedia_Proveen_Tabla_Proveedores" Association="Self.FK_Tabla_Intermedia_Proveen_Tabla_Proveedores">
+            <End Role="Tabla_Proveedores" EntitySet="Tabla_Proveedores" />
+            <End Role="Tabla_Intermedia_Proveen" EntitySet="Tabla_Intermedia_Proveen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_Sistema_de_InventarioModelStoreContainer" CdmEntityContainer="DB_Sistema_de_InventarioEntities2">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_Sistema_de_InventarioModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabla_Clientes">
+            <EntityTypeMapping TypeName="DB_Sistema_de_InventarioModel.Tabla_Clientes">
+              <MappingFragment StoreEntitySet="Tabla_Clientes">
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="nombreCliente" ColumnName="nombreCliente" />
+                <ScalarProperty Name="apellidoPaternoCliente" ColumnName="apellidoPaternoCliente" />
+                <ScalarProperty Name="apellidoMaternoCliente" ColumnName="apellidoMaternoCliente" />
+                <ScalarProperty Name="direccionCliente" ColumnName="direccionCliente" />
+                <ScalarProperty Name="telefonoCliente" ColumnName="telefonoCliente" />
+                <ScalarProperty Name="correroCliente" ColumnName="correroCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabla_Intemedia_Comrpas">
+            <EntityTypeMapping TypeName="DB_Sistema_de_InventarioModel.Tabla_Intemedia_Comrpas">
+              <MappingFragment StoreEntitySet="Tabla_Intemedia_Comrpas">
+                <ScalarProperty Name="compraID" ColumnName="compraID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="productoID" ColumnName="productoID" />
+                <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabla_Intermedia_Proveen">
+            <EntityTypeMapping TypeName="DB_Sistema_de_InventarioModel.Tabla_Intermedia_Proveen">
+              <MappingFragment StoreEntitySet="Tabla_Intermedia_Proveen">
+                <ScalarProperty Name="proveenID" ColumnName="proveenID" />
+                <ScalarProperty Name="productoID" ColumnName="productoID" />
+                <ScalarProperty Name="RFCproveedor" ColumnName="RFCproveedor" />
+                <ScalarProperty Name="fechaProveen" ColumnName="fechaProveen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabla_Productos">
+            <EntityTypeMapping TypeName="DB_Sistema_de_InventarioModel.Tabla_Productos">
+              <MappingFragment StoreEntitySet="Tabla_Productos">
+                <ScalarProperty Name="productoID" ColumnName="productoID" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+                <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
+                <ScalarProperty Name="pesoNeto" ColumnName="pesoNeto" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabla_Proveedores">
+            <EntityTypeMapping TypeName="DB_Sistema_de_InventarioModel.Tabla_Proveedores">
+              <MappingFragment StoreEntitySet="Tabla_Proveedores">
+                <ScalarProperty Name="RFCproveedor" ColumnName="RFCproveedor" />
+                <ScalarProperty Name="nombreProveedor" ColumnName="nombreProveedor" />
+                <ScalarProperty Name="apellidoPaternoProveedor" ColumnName="apellidoPaternoProveedor" />
+                <ScalarProperty Name="apellidoMaternoProveedor" ColumnName="apellidoMaternoProveedor" />
+                <ScalarProperty Name="telefonoProveedor" ColumnName="telefonoProveedor" />
+                <ScalarProperty Name="direccionProveedor" ColumnName="direccionProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabla_Usuarios">
+            <EntityTypeMapping TypeName="DB_Sistema_de_InventarioModel.Tabla_Usuarios">
+              <MappingFragment StoreEntitySet="Tabla_Usuarios">
+                <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="passwordUsuario" ColumnName="passwordUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

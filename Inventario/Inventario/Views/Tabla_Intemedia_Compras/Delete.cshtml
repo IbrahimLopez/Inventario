@@ -1,0 +1,56 @@
+﻿@model Inventario.Models.Tabla_Intemedia_Comrpas
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro que desea eliminar este registro?</h3>
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tabla_Clientes.nombreCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tabla_Clientes.nombreCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tabla_Productos.nombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tabla_Productos.nombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

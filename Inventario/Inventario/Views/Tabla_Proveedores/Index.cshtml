@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Inventario.Models.Tabla_Proveedores>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container form-group"></div>
+<div class="container, col-md-6">
+    <p>
+        @Html.ActionLink("Crear Nuevo Proveedor", "Create")
+    </p>
+    <p>
+        @Html.ActionLink("Reporte", "Reporte")
+    </p>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreProveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidoPaternoProveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidoMaternoProveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefonoProveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccionProveedor)
+        </th>
+        <th>Cantidad de productos</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreProveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoPaternoProveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoMaternoProveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefonoProveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccionProveedor)
+        </td>
+        <td>
+            @item.Tabla_Intermedia_Proveen.Count()
+        </td>
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Editar", "Edit", new { id = item.RFCproveedor })
+          
+            }           
+        </td>
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                 @Html.ActionLink("Detalles", "Details", new { id = item.RFCproveedor })            
+            }
+        </td>
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.RFCproveedor })
+            }
+        </td>
+    </tr>
+}
+
+</table>

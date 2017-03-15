@@ -1,0 +1,79 @@
+﻿@model Inventario.Models.Tabla_Productos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precioVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precioVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precioCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precioCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pesoNeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoNeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaEntrada)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.productoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<legend>Historial de compras</legend>
+
+<table style="background-color:#808080" class="table table-hover">
+    <tr>
+        <th>Nombre del Proveedor</th>        
+        <th>Fecha Proveen</th>
+        <th></th>
+    </tr>
+
+    @foreach (var producto in Model.Tabla_Intermedia_Proveen)
+            {
+        <tr>
+            <td>@(producto.Tabla_Proveedores.nombreProveedor + " " + producto.Tabla_Proveedores.apellidoPaternoProveedor + " " + producto.Tabla_Proveedores.apellidoMaternoProveedor)</td>            
+            <td>@producto.fechaProveen</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Tabla_Intermedia_Proveen", new { id = producto.proveenID }, null)  </td>
+            <td>@Html.ActionLink("Details", "Details", "Tabla_Intermedia_Proveen", new { id = producto.proveenID }, null)  </td>
+        </tr>
+    }
+
+
+</table>

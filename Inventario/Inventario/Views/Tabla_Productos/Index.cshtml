@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Inventario.Models.Tabla_Productos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container form-group"></div>
+<div class="container col-md-6" >
+    <p>
+        @Html.ActionLink("Crear nuevo producto", "Create")
+    </p>
+    <p>
+        @Html.ActionLink("Crear Reporte", "Reporte")
+    </p>
+</div>
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precioVenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precioCompra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pesoNeto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaEntrada)
+        </th>
+        <th></th>
+      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precioVenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precioCompra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pesoNeto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaEntrada)
+        </td>       
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.productoID }) 
+                @Html.ActionLink("Details", "Details", new { id = item.productoID }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.productoID })
+            }
+            
+        </td>
+    </tr>
+}
+
+</table>
