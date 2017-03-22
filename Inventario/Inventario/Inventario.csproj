@@ -245,6 +245,10 @@
     <Compile Include="Migrations\201703070505569_llavesTablas.Designer.cs">
       <DependentUpon>201703070505569_llavesTablas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703220049139_initial.cs" />
+    <Compile Include="Migrations\201703220049139_initial.Designer.cs">
+      <DependentUpon>201703220049139_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -290,6 +294,23 @@
     <Compile Include="ViewModels\VMUSerRoleName.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\ie8.css" />
+    <Content Include="assets\css\ie9.css" />
+    <Content Include="assets\css\images\bg01.png" />
+    <Content Include="assets\css\images\bg02.png" />
+    <Content Include="assets\css\images\bg03.png" />
+    <Content Include="assets\css\main.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\js\ie\backgroundsize.min.htc" />
+    <Content Include="assets\js\ie\html5shiv.js" />
+    <Content Include="assets\js\ie\PIE.htc" />
+    <Content Include="assets\js\ie\respond.min.js" />
+    <Content Include="assets\js\jquery.dropotron.min.js" />
+    <Content Include="assets\js\jquery.min.js" />
+    <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\skel.min.js" />
+    <Content Include="assets\js\util.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\breaking-bad-characters-wallpaper-for-1920x1200-71-720.jpg" />
@@ -335,6 +356,7 @@
     <Content Include="images\1.jpg" />
     <Content Include="images\2.jpg" />
     <Content Include="images\3.jpg" />
+    <Content Include="images\banner.jpg" />
     <Content Include="images\bbottom.jpg" />
     <Content Include="images\bg.jpg" />
     <Content Include="images\bmid.jpg" />
@@ -413,6 +435,18 @@
     <Content Include="Models\modeloEntidades.edmx.diagram">
       <DependentUpon>modeloEntidades.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\sass\ie8.scss" />
+    <Content Include="assets\sass\ie9.scss" />
+    <Content Include="assets\sass\libs\_functions.scss" />
+    <Content Include="assets\sass\libs\_mixins.scss" />
+    <Content Include="assets\sass\libs\_skel.scss" />
+    <Content Include="assets\sass\libs\_vars.scss" />
+    <Content Include="assets\sass\main.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cufon.yui.js" />
     <Content Include="Scripts\custom.js" />
@@ -540,6 +574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703070505569_llavesTablas.resx">
       <DependentUpon>201703070505569_llavesTablas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220049139_initial.resx">
+      <DependentUpon>201703220049139_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
