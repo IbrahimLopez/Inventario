@@ -6,78 +6,88 @@
 }
 
 <div class="container form-group"></div>
+<div class="form-group container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Proveedores</h3>
+        </div>
+        <div class="panel-body ">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombreProveedor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.apellidoPaternoProveedor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.apellidoMaternoProveedor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.telefonoProveedor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.direccionProveedor)
+                    </th>
+                    <th>Cantidad de productos</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombreProveedor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoPaternoProveedor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoMaternoProveedor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefonoProveedor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccionProveedor)
-        </th>
-        <th>Cantidad de productos</th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombreProveedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.apellidoPaternoProveedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.apellidoMaternoProveedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.telefonoProveedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.direccionProveedor)
+                        </td>
+                        <td>
+                            @item.Tabla_Intermedia_Proveen.Count()
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink(" ", "Edit", new { id = item.RFCproveedor }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" })
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreProveedor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoPaternoProveedor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoMaternoProveedor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefonoProveedor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccionProveedor)
-        </td>
-        <td>
-            @item.Tabla_Intermedia_Proveen.Count()
-        </td>
-        <td>
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Editar", "Edit", new { id = item.RFCproveedor })
-          
-            }           
-        </td>
-        <td>
-            @if (User.IsInRole("Admin"))
-            {
-                 @Html.ActionLink("Detalles", "Details", new { id = item.RFCproveedor })            
-            }
-        </td>
-        <td>
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.RFCproveedor })
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Generar PDF", "GeneratePDF2", new { id = item.RFCproveedor }, htmlAttributes: new { @class = "btn btn-primary" })
-        </td>
-    </tr>
-}
+                            }
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink(" ", "Details", new { id = item.RFCproveedor }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" })
+                            }
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Admin"))
+                            {
+                               @Html.ActionLink(" ", "Delete", new { id = item.RFCproveedor }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink(" ", "GeneratePDF2", new { id = item.RFCproveedor }, htmlAttributes: new { @class = "glyphicon glyphicon-file" })
+                        </td>
+                       </tr>
+                }
 
-</table>
-<div class="container col-md-6">
-    @Html.ActionLink("Crear Nuevo Proveedor", "Create", null, htmlAttributes: new { @class = "btn btn-info" })
-    @Html.ActionLink("Generar PDF", "GeneratePDF", null, htmlAttributes: new { @class = "btn btn-info" })
+            </table>
+            </div>
+        </div>
+    </div>
 
-</div>
+            <div class="container col-md-6">
+                @Html.ActionLink("Crear Nuevo Proveedor", "Create", null, htmlAttributes: new { @class = "btn btn-info" })
+                @Html.ActionLink("Generar PDF", "GeneratePDF", null, htmlAttributes: new { @class = "btn btn-info" })
+
+            </div>

@@ -11,11 +11,11 @@
 <div class="form-group container">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title">Proveen</h3>
+            <h3 class="panel-title">Clientes</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body ">
             <!-- Table -->
-            <table class="table table-striped container table-responsive">
+            <table class="table  table-responsive">
                 <tr>
                     <th>
                         Nombre del Cliente
@@ -40,8 +40,9 @@
                         Numero de Compras
                     </th>
                     <th>
-
+                      
                     </th>
+                    <th></th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -72,17 +73,19 @@
                         </td>
                         @if (User.IsInRole("Admin"))
                         {
+                            @*@Html.ActionLink(".", "Edit", new { id = item.clienteID })*@
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = item.clienteID })
+                                @Html.ActionLink(" ", "Edit", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" })
+                            
                             </td>
                             <td>
-                                @Html.ActionLink("Detalles", "Details", new { id = item.clienteID })
+                                @Html.ActionLink(" ", "Details", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" })
                             </td>
                             <td>
-                                @Html.ActionLink("Eliminar", "Delete", new { id = item.clienteID })
+                                @Html.ActionLink(" ", "Delete", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
                             </td>
                             <td>
-                                @Html.ActionLink("Generar PDF", "GeneratePDF2", new { id = item.clienteID }, htmlAttributes: new { @class = "btn btn-primary" })
+                                @Html.ActionLink(" ", "GeneratePDF2", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-file" })
                             </td>
                         }                        
                     </tr>

@@ -19,26 +19,56 @@
     @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
-    <div style="text-align:left" class="container panel-body" id="Reporte">
-        <table class="table table-responsive table-bordered">
-            <tr>
-                <th>Nombre del Cliente</th>
-                <th>Nombre del Producto</th>
-                <th>Fecha de compra</th>
-                <th>Cantidad</th>
-            </tr>
-
-            @foreach (var compra in Model.Tabla_Intemedia_Comrpas)
-            {
+    <div class="container, form-group" style="position:center">
+        <img style="height:206px; width:206px;" src="~/images/inventarioasda.png" />
+    </div> <br />
+    <table>
+        <tr>
+            <th>
+                <h3><strong>Reporte General</strong> </h3>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Programa Inventario de produtos.
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Calle Puerto San Felipe #24, Lopez Portillo.<br />
+                Numero: 6515139649 <br />
+                Fecha y hora de reporte: @DateTime.Now
+            </th>
+        </tr>
+    </table>
+    <br />
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Clientes</h3>
+        </div>
+        <div class="panel-body ">
+            <table class="table">
                 <tr>
-                    <td>@(compra.Tabla_Clientes.nombreCliente + " " + compra.Tabla_Clientes.apellidoPaternoCliente + " " + compra.Tabla_Clientes.apellidoMaternoCliente)</td>
-                    <td>@compra.Tabla_Productos.nombreProducto</td>
-                    <td>@compra.fechaCompra</td>
-                    <td>@compra.cantidad</td>
+                    <th>Nombre del Cliente</th>
+                    <th>Nombre del Producto</th>
+                    <th>Fecha de compra</th>
+                    <th>Cantidad</th>
                 </tr>
-            }
 
-        </table>
-    </div>   
+                @foreach (var compra in Model.Tabla_Intemedia_Comrpas)
+            {
+                    <tr>
+                        <td>@(compra.Tabla_Clientes.nombreCliente + " " + compra.Tabla_Clientes.apellidoPaternoCliente + " " + compra.Tabla_Clientes.apellidoMaternoCliente)</td>
+                        <td>@compra.Tabla_Productos.nombreProducto</td>
+                        <td>@compra.fechaCompra</td>
+                        <td>@compra.cantidad</td>
+                    </tr>
+                }
+
+            </table>
+          
+        </div>
+        </div>
+    
 </body>
 </html>

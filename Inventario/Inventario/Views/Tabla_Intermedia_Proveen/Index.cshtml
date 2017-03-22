@@ -44,10 +44,17 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.proveenID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.proveenID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.proveenID })
+                                @Html.ActionLink(" ", "Edit", new { id = item.proveenID }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" })
                             </td>
+                            <td>
+                                 @Html.ActionLink(" ", "Details", new { id = item.proveenID }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" })
+                            </td>
+                            <td>
+                                @Html.ActionLink(" ", "Delete", new { id = item.proveenID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+                            </td>
+                                
+                               
+                           
                         }
                        
                     </tr>

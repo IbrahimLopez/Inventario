@@ -19,44 +19,80 @@
     @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
-    <div style="text-align:left" class="container panel-body" id="Reporte">
-        <table class="table table-responsive table-bordered">
-            <tr>
-                <th>
-                    Nombre del Cliente
-                </th>       
-                <th>
-                    Direccion del Cliente
-                </th>
-                <th>
-                    Numero de Telefono
-                </th>
-                <th>
-                    Correo Electronico
-                </th>
-                
-            </tr>
-
-            @foreach (var item in Model)
-            {
+    <div class="col-md-6">
+        <div class="container, form-group" style="position:center">
+            <img style="height:140px; width:140px;" src="~/images/inventarioasda.png" />
+        </div> <br />
+        <div class="container">
+            <table>
                 <tr>
-                    <td>
-                        @(item.nombreCliente+" "+item.apellidoPaternoCliente+" "+item.apellidoMaternoCliente)
-                    </td>                 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.direccionCliente)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.telefonoCliente)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.correroCliente)
-                    </td>                   
+                    <th>
+                        <h3><strong>Reporte General</strong> </h3>
+                    </th>
                 </tr>
-            }
-
-        </table>
+                <tr>
+                    <th>
+                        Programa Inventario de produtos.
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Calle Puerto San Felipe #24, Lopez Portillo.<br />
+                        Numero: 6515139649 <br />
+                        Fecha y hora de reporte: @DateTime.Now
+                    </th>
+                </tr>
+            </table>
+        </div>
     </div>
+          
+   
     
+    <br />
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Clientes</h3>
+        </div>
+        <div class="panel-body ">
+            <table class="table ">
+                <tr>
+                    <th>
+                        Nombre del Cliente
+                    </th>
+                    <th>
+                        Direccion del Cliente
+                    </th>
+                    <th>
+                        Numero de Telefono
+                    </th>
+                    <th>
+                        Correo Electronico
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @(item.nombreCliente + " " + item.apellidoPaternoCliente + " " + item.apellidoMaternoCliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.direccionCliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.telefonoCliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.correroCliente)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        </div>
+    
+
 </body>
 </html>

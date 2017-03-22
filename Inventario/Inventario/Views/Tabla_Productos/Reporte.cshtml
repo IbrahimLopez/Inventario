@@ -19,53 +19,80 @@
     @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
-   
-    <div class="container panel-body" id="Reporte">
-        <table class="table table-bordered">
-            <tr>
-                <th>
-                   Nombre Producto
-                </th>
-                <th>
-                   Precio venta
-                </th>
-                <th>
-                   Precio compra
-                </th>
-                <th>
-                   Peso neto
-                </th>
-                <th>
-                    Fecha entrada
-                </th>
-               
-            </tr>
-
-            @foreach (var item in Model)
-            {
+    <div class="container, form-group" style="position:center">
+        <img style="height:206px; width:206px;" src="~/images/inventarioasda.png" />
+    </div> <br />
+    <table>
+        <tr>
+            <th>
+                <h3><strong>Reporte General</strong> </h3>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Programa Inventario de produtos.
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Calle Puerto San Felipe #24, Lopez Portillo.<br />
+                Numero: 6515139649 <br />
+                Fecha y hora de reporte: @DateTime.Now
+            </th>
+        </tr>
+    </table>
+    <br />
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Productos</h3>
+        </div>
+        <div class="panel-body ">
+            <table class="table table-bordered">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nombreProducto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.precioVenta)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.precioCompra)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pesoNeto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fechaEntrada)
-                    </td>
-                    
-                </tr>
-            }
+                    <th>
+                        Nombre Producto
+                    </th>
+                    <th>
+                        Precio venta
+                    </th>
+                    <th>
+                        Precio compra
+                    </th>
+                    <th>
+                        Peso neto
+                    </th>
+                    <th>
+                        Fecha entrada
+                    </th>
 
-        </table>
-    </div>
-   
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombreProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.precioVenta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.precioCompra)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pesoNeto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fechaEntrada)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+        </div>
+    
 </body>
 </html>
 
