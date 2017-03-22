@@ -10,7 +10,7 @@ using Inventario.Models;
 
 namespace Inventario.Controllers
 {
-    [Authorize(Roles = "Admin, Capturista")]
+    
     public class Tabla_ProductosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -112,7 +112,7 @@ namespace Inventario.Controllers
         }
 
         // POST: Tabla_Productos/Delete/5
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -122,11 +122,13 @@ namespace Inventario.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Reporte()
         {
-
-            return View(db.Tabla_Productos.ToList());
+            
+                return View(db.Tabla_Productos.ToList());
+         
+            
         }
 
         protected override void Dispose(bool disposing)
@@ -136,6 +138,21 @@ namespace Inventario.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //generar pdf con rotativa
+        //[Authorize(Roles ="Admin")]
+        public ActionResult GeneratePDF()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return new Rotativa.ActionAsPdf("Reporte");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+       
         }
     }
 }

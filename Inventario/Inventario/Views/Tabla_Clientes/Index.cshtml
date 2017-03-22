@@ -81,6 +81,9 @@
                             <td>
                                 @Html.ActionLink("Eliminar", "Delete", new { id = item.clienteID })
                             </td>
+                            <td>
+                                @Html.ActionLink("Generar PDF", "GeneratePDF2", new { id = item.clienteID }, htmlAttributes: new { @class = "btn btn-primary" })
+                            </td>
                         }                        
                     </tr>
                 }
@@ -94,5 +97,5 @@
 
 <div class="col-md-6 form-group container">
     @Html.ActionLink("Crear nuevo registro", "Create", null, htmlAttributes: new { @class = "btn btn-info" })
-    @Html.ActionLink("Reporte Clientes", "Reporte", null, htmlAttributes: new { @class = "btn btn-info" })
+    @Html.ActionLink("Generar PDF", "GeneratePDF", null, htmlAttributes: new { @class = "btn btn-info" })
 </div>

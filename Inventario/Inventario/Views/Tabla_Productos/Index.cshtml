@@ -6,14 +6,7 @@
 }
 
 <div class="container form-group"></div>
-<div class="container col-md-6" >
-    <p>
-        @Html.ActionLink("Crear nuevo producto", "Create")
-    </p>
-    <p>
-        @Html.ActionLink("Crear Reporte", "Reporte")
-    </p>
-</div>
+
 
 <table class="table table-striped table-bordered">
     <tr>
@@ -59,10 +52,17 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.productoID }) 
                 @Html.ActionLink("Details", "Details", new { id = item.productoID }) 
                 @Html.ActionLink("Delete", "Delete", new { id = item.productoID })
+                
             }
             
         </td>
     </tr>
 }
+    
 
 </table>
+<div class="container col-md-6">
+    @Html.ActionLink("Crear nuevo producto", "Create",null, htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.ActionLink("Generar PDF", "GeneratePDF", null, htmlAttributes: new { @class = "btn btn-primary" })
+    
+</div>

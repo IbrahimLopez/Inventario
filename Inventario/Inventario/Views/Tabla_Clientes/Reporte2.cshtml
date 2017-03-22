@@ -1,0 +1,44 @@
+﻿@model Inventario.Models.Tabla_Clientes
+@using Inventario.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte</title>
+    <script src="~/Scripts/jspdf.debug.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div style="text-align:left" class="container panel-body" id="Reporte">
+        <table class="table table-responsive table-bordered">
+            <tr>
+                <th>Nombre del Cliente</th>
+                <th>Nombre del Producto</th>
+                <th>Fecha de compra</th>
+                <th>Cantidad</th>
+            </tr>
+
+            @foreach (var compra in Model.Tabla_Intemedia_Comrpas)
+            {
+                <tr>
+                    <td>@(compra.Tabla_Clientes.nombreCliente + " " + compra.Tabla_Clientes.apellidoPaternoCliente + " " + compra.Tabla_Clientes.apellidoMaternoCliente)</td>
+                    <td>@compra.Tabla_Productos.nombreProducto</td>
+                    <td>@compra.fechaCompra</td>
+                    <td>@compra.cantidad</td>
+                </tr>
+            }
+
+        </table>
+    </div>   
+</body>
+</html>
