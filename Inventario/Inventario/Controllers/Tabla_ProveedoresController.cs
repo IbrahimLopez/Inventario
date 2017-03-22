@@ -10,21 +10,67 @@ using Inventario.Models;
 
 namespace Inventario.Controllers
 {
-    [Authorize(Roles = "Admin, Capturista")]
+    
     public class Tabla_ProveedoresController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tabla_Proveedores
+        [Authorize(Roles = "Admin, Capturista")]
         public ActionResult Index()
         {
             return View(db.Tabla_Proveedores.ToList());
         }
+        
         public ActionResult Reporte()
         {
-            return View(db.Tabla_Proveedores.ToList());
+         
+                return View(db.Tabla_Proveedores.ToList());
+          
+           
         }
 
+        public ActionResult Reporte2(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tabla_Proveedores tabla_Proveedores = db.Tabla_Proveedores.Find(id);
+            if (tabla_Proveedores == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tabla_Proveedores);
+        }
+        //Se genera el pdf
+        public ActionResult GeneratePDF()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return new Rotativa.ActionAsPdf("Reporte");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        public ActionResult GeneratePDF2(int id)
+        {
+            if (User.IsInRole("Admin"))
+            {
+
+                return new Rotativa.ActionAsPdf("Reporte2" + "/" + id);
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
         // GET: Tabla_Proveedores/Details/5
         [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)

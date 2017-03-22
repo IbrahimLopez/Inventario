@@ -10,24 +10,30 @@ using Inventario.Models;
 
 namespace Inventario.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class Tabla_Intermedia_ProveenController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tabla_Intermedia_Proveen
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var tabla_Intermedia_Proveen = db.Tabla_Intermedia_Proveen.Include(t => t.Tabla_Productos).Include(t => t.Tabla_Proveedores);
             return View(tabla_Intermedia_Proveen.ToList());
         }
+        
         public ActionResult Reporte()
         {
-            var tabla_Intermedia_Proveen = db.Tabla_Intermedia_Proveen.Include(t => t.Tabla_Productos).Include(t => t.Tabla_Proveedores);
-            return View(tabla_Intermedia_Proveen.ToList());
+            
+                var tabla_Intermedia_Proveen = db.Tabla_Intermedia_Proveen.Include(t => t.Tabla_Productos).Include(t => t.Tabla_Proveedores);
+                return View(tabla_Intermedia_Proveen.ToList());
+          
+            
         }
 
         // GET: Tabla_Intermedia_Proveen/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +49,7 @@ namespace Inventario.Controllers
         }
 
         // GET: Tabla_Intermedia_Proveen/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             
@@ -56,6 +63,7 @@ namespace Inventario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "proveenID,productoID,RFCproveedor,fechaProveen")] Tabla_Intermedia_Proveen tabla_Intermedia_Proveen)
         {
             if (ModelState.IsValid)
@@ -71,6 +79,7 @@ namespace Inventario.Controllers
         }
 
         // GET: Tabla_Intermedia_Proveen/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,6 +101,7 @@ namespace Inventario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "proveenID,productoID,RFCproveedor,fechaProveen")] Tabla_Intermedia_Proveen tabla_Intermedia_Proveen)
         {
             if (ModelState.IsValid)
@@ -106,6 +116,7 @@ namespace Inventario.Controllers
         }
 
         // GET: Tabla_Intermedia_Proveen/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,6 +133,7 @@ namespace Inventario.Controllers
 
         // POST: Tabla_Intermedia_Proveen/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -138,6 +150,18 @@ namespace Inventario.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult GeneratePDF()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return new Rotativa.ActionAsPdf("Reporte");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
     }
 }

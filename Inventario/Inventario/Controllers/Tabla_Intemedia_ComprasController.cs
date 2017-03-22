@@ -10,12 +10,13 @@ using Inventario.Models;
 
 namespace Inventario.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   
     public class Tabla_Intemedia_ComprasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tabla_Intemedia_Compras
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             var tabla_Intemedia_Comrpas = db.Tabla_Intemedia_Comrpas.Include(t => t.Tabla_Clientes).Include(t => t.Tabla_Productos);
@@ -24,10 +25,14 @@ namespace Inventario.Controllers
         // GET: Tabla_Intemedia_Compras
         public ActionResult Reporte()
         {
-            var tabla_Intemedia_Comrpas = db.Tabla_Intemedia_Comrpas.Include(t => t.Tabla_Clientes).Include(t => t.Tabla_Productos);
-            return View(tabla_Intemedia_Comrpas.ToList());
+          
+                var tabla_Intemedia_Comrpas = db.Tabla_Intemedia_Comrpas.Include(t => t.Tabla_Clientes).Include(t => t.Tabla_Productos);
+                return View(tabla_Intemedia_Comrpas.ToList());
+          
+            
         }
         // GET: Tabla_Intemedia_Compras/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +48,7 @@ namespace Inventario.Controllers
         }
 
         // GET: Tabla_Intemedia_Compras/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.clienteID = new SelectList(db.Tabla_Clientes, "clienteID", "nombreCliente");
@@ -55,6 +61,7 @@ namespace Inventario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "compraID,clienteID,productoID,fechaCompra,cantidad")] Tabla_Intemedia_Comrpas tabla_Intemedia_Comrpas)
         {
             if (ModelState.IsValid)
@@ -82,6 +89,7 @@ namespace Inventario.Controllers
         }
 
         // GET: Tabla_Intemedia_Compras/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +111,7 @@ namespace Inventario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "compraID,clienteID,productoID,fechaCompra,cantidad")] Tabla_Intemedia_Comrpas tabla_Intemedia_Comrpas)
         {
             if (ModelState.IsValid)
@@ -118,6 +127,7 @@ namespace Inventario.Controllers
         }
 
         // GET: Tabla_Intemedia_Compras/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -135,6 +145,7 @@ namespace Inventario.Controllers
         // POST: Tabla_Intemedia_Compras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Tabla_Intemedia_Comrpas tabla_Intemedia_Comrpas = db.Tabla_Intemedia_Comrpas.Find(id);
@@ -150,6 +161,18 @@ namespace Inventario.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult GeneratePDF()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return new Rotativa.ActionAsPdf("Reporte");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
     }
 }

@@ -77,6 +77,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -401,6 +405,7 @@
       <DependentUpon>modeloEntidades.edmx</DependentUpon>
       <LastGenOutput>modeloEntidades.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -413,6 +418,7 @@
     <Content Include="Models\modeloEntidades.edmx.diagram">
       <DependentUpon>modeloEntidades.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cufon.yui.js" />
     <Content Include="Scripts\custom.js" />
@@ -497,6 +503,8 @@
     <Content Include="Views\Tabla_Intermedia_Proveen\Reporte.cshtml" />
     <Content Include="Views\Tabla_Proveedores\Reporte.cshtml" />
     <Content Include="Views\Tabla_Clientes\Reporte.cshtml" />
+    <Content Include="Views\Tabla_Clientes\Reporte2.cshtml" />
+    <Content Include="Views\Tabla_Proveedores\Reporte2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

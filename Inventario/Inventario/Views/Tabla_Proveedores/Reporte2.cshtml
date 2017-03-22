@@ -1,0 +1,45 @@
+﻿@model Inventario.Models.Tabla_Proveedores
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte</title>
+    <script src="~/Scripts/jspdf.debug.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>    
+        <table  class="table table-bordered">
+            <tr>
+                <th>Nombre del Proveedor</th>
+                <th>Nombre del Producto</th>
+                <th>Fecha Proveen</th>
+                
+            </tr>
+
+            @foreach (var producto in Model.Tabla_Intermedia_Proveen)
+            {
+                <tr>
+                    <td>@producto.Tabla_Proveedores.nombreProveedor</td>
+                    <td>@producto.Tabla_Productos.nombreProducto</td>                    
+                    <td>@producto.fechaProveen</td>
+                    
+
+                </tr>
+            }
+
+
+        </table>
+
+</body>
+</html>
