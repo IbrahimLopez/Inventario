@@ -4,7 +4,7 @@
 
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -66,8 +66,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.clienteID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.clienteID }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>
 <legend>Historial de compras</legend>
 
@@ -86,8 +86,8 @@
             <td>@compra.Tabla_Productos.nombreProducto</td>
             <td>@compra.fechaCompra</td>
             <td>@compra.cantidad</td>            
-            <td>@Html.ActionLink("Delete", "Delete", "Tabla_Intemedia_Compras", new { id = compra.compraID }, null)  </td>
-            <td>@Html.ActionLink("Details", "Details", "Tabla_Intemedia_Compras", new { id = compra.compraID }, null)  </td>
+            <td>@Html.ActionLink("Eliminar", "Delete", "Tabla_Intemedia_Compras", new { id = compra.compraID }, null)  </td>
+            <td>@Html.ActionLink("Detalles", "Details", "Tabla_Intemedia_Compras", new { id = compra.compraID }, null)  </td>
         </tr>
     }
 

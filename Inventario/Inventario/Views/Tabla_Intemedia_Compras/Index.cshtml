@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Inventario.Models.Tabla_Intemedia_Comrpas>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Compras";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -54,7 +54,7 @@
                            <td>
                                @if (User.IsInRole("Admin"))
                                    {
-                                       @Html.ActionLink("Edit", "Edit", new { id = item.compraID })                                                                      
+                                       @Html.ActionLink("Editar", "Edit", new { id = item.compraID })                                                                      
                                }
                            </td>
                            <td>

@@ -1,7 +1,7 @@
 ﻿@model Inventario.Models.Tabla_Productos
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -53,8 +53,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.productoID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.productoID }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>
 <legend>Historial de compras</legend>
 
@@ -70,8 +70,8 @@
         <tr>
             <td>@(producto.Tabla_Proveedores.nombreProveedor + " " + producto.Tabla_Proveedores.apellidoPaternoProveedor + " " + producto.Tabla_Proveedores.apellidoMaternoProveedor)</td>            
             <td>@producto.fechaProveen</td>
-            <td>@Html.ActionLink("Delete", "Delete", "Tabla_Intermedia_Proveen", new { id = producto.proveenID }, null)  </td>
-            <td>@Html.ActionLink("Details", "Details", "Tabla_Intermedia_Proveen", new { id = producto.proveenID }, null)  </td>
+            <td>@Html.ActionLink("Eliminar", "Delete", "Tabla_Intermedia_Proveen", new { id = producto.proveenID }, null)  </td>
+            <td>@Html.ActionLink("Detalles", "Details", "Tabla_Intermedia_Proveen", new { id = producto.proveenID }, null)  </td>
         </tr>
     }
 

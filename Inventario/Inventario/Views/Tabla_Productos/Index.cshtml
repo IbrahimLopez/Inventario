@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Inventario.Models.Tabla_Productos>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -49,9 +49,9 @@
         <td>
             @if (User.IsInRole("Admin"))
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.productoID }) 
-                @Html.ActionLink("Details", "Details", new { id = item.productoID }) 
-                @Html.ActionLink("Delete", "Delete", new { id = item.productoID })
+                @Html.ActionLink("Editar", "Edit", new { id = item.productoID }) 
+                @Html.ActionLink("Detalles", "Details", new { id = item.productoID }) 
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.productoID })
                 
             }
             

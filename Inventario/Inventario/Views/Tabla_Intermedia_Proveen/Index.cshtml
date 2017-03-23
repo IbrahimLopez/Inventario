@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Inventario.Models.Tabla_Intermedia_Proveen>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Proveen";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -44,9 +44,9 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.proveenID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.proveenID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.proveenID })
+                                @Html.ActionLink("Editar", "Edit", new { id = item.proveenID }) |
+                                @Html.ActionLink("Detalles", "Details", new { id = item.proveenID }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.proveenID })
                             </td>
                         }
                        
