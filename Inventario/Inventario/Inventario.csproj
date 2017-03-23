@@ -391,6 +391,7 @@
     <Content Include="images\imagen2.jpg" />
     <Content Include="images\imagen3.jpg" />
     <Content Include="images\inventario.jpg" />
+    <Content Include="images\inventarioasda.png" />
     <Content Include="images\loading.gif" />
     <Content Include="images\logo.svg" />
     <Content Include="images\paperbottom.jpg" />
@@ -535,6 +536,8 @@
     <Content Include="Views\Tabla_Intermedia_Proveen\Reporte.cshtml" />
     <Content Include="Views\Tabla_Proveedores\Reporte.cshtml" />
     <Content Include="Views\Tabla_Clientes\Reporte.cshtml" />
+    <Content Include="Views\Tabla_Clientes\Reporte2.cshtml" />
+    <Content Include="Views\Tabla_Proveedores\Reporte2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,44 +19,72 @@
     @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
-    <div class="container panel-body" id="Reporte">
-        <table class="table table-bordered">
-            <tr>
-                <th>
-                    Fecha de compra
-                </th>
-                <th>
-                    Cantidad
-                </th>
-                <th>
-                    Nombre del cliente
-                </th>
-                <th>
-                    Nombre del producto
-                </th>
-            
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fechaCompra)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cantidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tabla_Clientes.nombreCliente)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tabla_Productos.nombreProducto)
-                    </td>
-                </tr>
-            }
-
-        </table>
+    <div class="container, form-group" style="position:center">
+        <img style="height:206px; width:206px;" src="~/images/inventarioasda.png" />
+    </div> <br />
+    <table>
+        <tr>
+            <th>
+                <h3><strong>Reporte General</strong> </h3>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Programa Inventario de produtos.
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Calle Puerto San Felipe #24, Lopez Portillo.<br />
+                Numero: 6515139649 <br />
+                Fecha y hora de reporte: @DateTime.Now
+            </th>
+        </tr>
+    </table>
+    <br />
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Compras</h3>
         </div>
-   
+        <div class="panel-body ">
+            <table class="table table-bordered">
+                <tr>
+                    <th>
+                        Fecha de compra
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Nombre del cliente
+                    </th>
+                    <th>
+                        Nombre del producto
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fechaCompra)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tabla_Clientes.nombreCliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tabla_Productos.nombreProducto)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        </div>
+    
 </body>
 </html>

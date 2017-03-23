@@ -18,28 +18,59 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </head>
-<body>    
-        <table  class="table table-bordered">
-            <tr>
-                <th>Nombre del Proveedor</th>
-                <th>Nombre del Producto</th>
-                <th>Fecha Proveen</th>
-                
-            </tr>
-
-            @foreach (var producto in Model.Tabla_Intermedia_Proveen)
-            {
+<body>
+        <div class="container, form-group" style="position:center">
+        <img style="height:206px; width:206px;" src="~/images/inventarioasda.png" />
+    </div> <br />
+    <table>
+        <tr>
+            <th>
+                <h3><strong>Reporte General</strong> </h3>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Programa Inventario de produtos.
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Calle Puerto San Felipe #24, Lopez Portillo.<br />
+                Numero: 6515139649 <br />
+                Fecha y hora de reporte: @DateTime.Now
+            </th>
+        </tr>
+    </table>
+    <br />
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Proveedores
+        </div>
+        <div class="panel-body ">
+            <table class="table">
                 <tr>
-                    <td>@producto.Tabla_Proveedores.nombreProveedor</td>
-                    <td>@producto.Tabla_Productos.nombreProducto</td>                    
-                    <td>@producto.fechaProveen</td>
-                    
+                    <th>Nombre del Proveedor</th>
+                    <th>Nombre del Producto</th>
+                    <th>Fecha Proveen</th>
 
                 </tr>
-            }
+
+                @foreach (var producto in Model.Tabla_Intermedia_Proveen)
+            {
+                    <tr>
+                        <td>@producto.Tabla_Proveedores.nombreProveedor</td>
+                        <td>@producto.Tabla_Productos.nombreProducto</td>
+                        <td>@producto.fechaProveen</td>
 
 
-        </table>
+                    </tr>
+                }
+
+
+            </table>
+            </div>
+        </div>
+    
 
 </body>
 </html>
