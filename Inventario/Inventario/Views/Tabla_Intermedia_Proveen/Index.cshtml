@@ -44,10 +44,19 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <td>
-                                @Html.ActionLink("Editar", "Edit", new { id = item.proveenID }) |
-                                @Html.ActionLink("Detalles", "Details", new { id = item.proveenID }) |
-                                @Html.ActionLink("Eliminar", "Delete", new { id = item.proveenID })
+                                @Html.ActionLink(" ", "Edit", new { id = item.proveenID }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" })
+
                             </td>
+                            <td>
+                                @Html.ActionLink(" ", "Details", new { id = item.proveenID }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" })
+                            </td>
+                            <td>
+                                @Html.ActionLink(" ", "Delete", new { id = item.proveenID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+                            </td>
+                            <td>
+                                @Html.ActionLink(" ", "GeneratePDF2", new { id = item.proveenID }, htmlAttributes: new { @class = "glyphicon glyphicon-file" })
+                            </td>
+                            
                         }
                        
                     </tr>
@@ -63,7 +72,5 @@
     @Html.ActionLink("Crear nuevo registro", "Create", null, htmlAttributes: new { @class = "btn btn-info" })
     @Html.ActionLink("Generar PDF", "GeneratePDF", null, htmlAttributes: new { @class = "btn btn-info" })
 </div>
-
-
 
 

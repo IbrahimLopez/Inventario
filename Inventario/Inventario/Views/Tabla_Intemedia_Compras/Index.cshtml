@@ -54,20 +54,20 @@
                            <td>
                                @if (User.IsInRole("Admin"))
                                    {
-                                       @Html.ActionLink("Editar", "Edit", new { id = item.compraID })                                                                      
+                                       @Html.ActionLink(" ", "Edit", new { id = item.compraID }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" })                                                                      
                                }
                            </td>
                            <td>
                                @if (User.IsInRole("Admin"))
                                {
-                                @Html.ActionLink("Detalles", "Details", new { id = item.compraID })
+                                @Html.ActionLink(" ", "Details", new { id = item.compraID }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" })
                                }
                            </td>
 
                            <td>
                                @if (User.IsInRole("Admin"))
                                {                                                                    
-                                   @Html.ActionLink("Eliminar", "Delete", new { id = item.compraID })
+                                   @Html.ActionLink(" ", "Delete", new { id = item.compraID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
                                }
                            </td>
 
@@ -84,4 +84,18 @@
     @Html.ActionLink("Generar PDF", "GeneratePDF", null, htmlAttributes: new { @class = "btn btn-info" })
 </div>
 
+@*
+    <td>
+                               @Html.ActionLink(" ", "Edit", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" })
 
+                           </td>
+                           <td>
+                               @Html.ActionLink(" ", "Details", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" })
+                           </td>
+                           <td>
+                               @Html.ActionLink(" ", "Delete", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+                           </td>
+                           <td>
+                               @Html.ActionLink(" ", "GeneratePDF2", new { id = item.clienteID }, htmlAttributes: new { @class = "glyphicon glyphicon-file" })
+                           </td>
+*@
